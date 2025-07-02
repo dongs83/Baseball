@@ -1,8 +1,12 @@
 #include "gmock/gmock.h"
 #include "baseball.cpp"
+#include <stdexcept>
 
-TEST(BaseballGame, TryGameTest) {
-	EXPECT_EQ(1, 1);
+using namespace std;
+
+TEST(BaseballGame, ThrowExceptionWhenINputLengthIsUnmached) {
+	Baseball game;
+	EXPECT_THROW(game.guess("12"), length_error);
 }
 
 int main() {
