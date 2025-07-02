@@ -16,13 +16,17 @@ public:
 		if (isStrike2Ball1(guessNumber)) {
 			return { false, 2, 0 };
 		}
-		if ((guessNumber[0] == question[0] && guessNumber[1] == question[2] && guessNumber[2] == question[1]) ||
-			(guessNumber[0] == question[2] && guessNumber[1] == question[1] && guessNumber[2] == question[0]) ||
-			(guessNumber[0] == question[1] && guessNumber[1] == question[0] && guessNumber[2] == question[2])) {
+		if (isStrike1Ball2(guessNumber)) {
 
 			return { false, 1, 2 };
 		}
 		return { false, 0, 0 };
+	}
+	bool isStrike1Ball2(const std::string& guessNumber)
+	{
+		return (guessNumber[0] == question[0] && guessNumber[1] == question[2] && guessNumber[2] == question[1]) ||
+			(guessNumber[0] == question[2] && guessNumber[1] == question[1] && guessNumber[2] == question[0]) ||
+			(guessNumber[0] == question[1] && guessNumber[1] == question[0] && guessNumber[2] == question[2]);
 	}
 	bool isStrike2Ball1(const std::string& guessNumber)
 	{
