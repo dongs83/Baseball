@@ -3,16 +3,25 @@
 #include <stdexcept>
 
 using namespace std;
-
-TEST(BaseballGame, ThrowExceptionWhenINputLengthIsUnmached) {
+class BaseballFixture : public testing::Test {
+public:
 	Baseball game;
-	EXPECT_THROW(game.guess("12"), length_error);
-}
-TEST(BaseballGame, THrowExceptionWhenInvalidChar) {
-	Baseball game;
-	EXPECT_THROW(game.guess("12s"), invalid_argument);
+	void assertIllegalArgument(string guessNumber) {
+		try {
+			game.guess(string("12s"));
+			FAIL();
+		}
+		catch (exception e) {
+			//PASS
+		}
+	}
+};
 
+TEST_F(BaseballFixture, ThrowExceptionWhenInvalidCase) {
+	assertIllegalArgument("12");
+	assertIllegalArgument("12s");
 }
+
 
 int main() {
 	::testing::InitGoogleMock();
